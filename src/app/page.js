@@ -1,4 +1,6 @@
+
 import FAQSection from '../../components/FAQSection';
+import LandingPageButton from '../../components/LandingPageButton';
 
 const faqData = [
   {
@@ -24,18 +26,22 @@ const faqData = [
   },
 ];
 export default function Home() {
-  return (
 
-    <div className=' grid grid-cols-1'>
-      {/* <div>
+  return (
+    <div>
+      <LandingPageButton />
+      <div className=' grid grid-cols-1'>
+        {/* <div>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero incidunt itaque, veniam similique minus quas perspiciatis asperiores inventore sit animi pariatur alias! Rem animi ipsum ad mollitia laboriosam veniam assumenda.
         </div> */}
+        <h2 className=' text-center font-bold pt-4'>Expandable component</h2>
+        <div className='p-4'>
+          <FAQSection faqData={faqData} />
+        </div>
 
-      <div className='p-4'>
-        <FAQSection faqData={faqData} />
       </div>
-
     </div>
+
 
   )
 }
