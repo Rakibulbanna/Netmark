@@ -1,13 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-// import 'swiper/css';
-// import 'swiper/css/effect-coverflow';
-// import 'swiper/css/pagination';
-// import 'swiper/css/navigation';
-
-import { EffectCoverflow, Pagination, Navigation } from 'swiper';
 const movies = [
     // Add your movie data here
     // Each movie should have a title and an image URL
@@ -18,13 +11,14 @@ const movies = [
     { title: 'Movie 3', image: 'image-5.webp', description: 'cc55555cccccc ccc' },
     { title: 'Movie 3', image: 'image-6.webp', description: 'cc 66666cccccc ccc' },
 ];
-
+const moviesLength = movies.length
 const Slider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+            const temp = 
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % moviesLength);
         }, 3000); // Change slide every 3 seconds
 
         return () => {
@@ -33,78 +27,31 @@ const Slider = () => {
     }, []);
     return (
         <>
-            {/* <div >
-                <div className='grid grid-cols-3' >
-                    <div className=" flex transition-transform transform"
+            <div className='grid grid-cols-2 border-4 border-indigo-500/100'>
+                <div className='grid grid-cols-3 overflow-hidden' >
+                    <div className=" flex transition-transform "
                         style={{
                             transform: `translateX(-${currentIndex * 100}%)`,
                         }}>
                         {movies.map((movie, index) => (
                             <div
                                 key={index}
-                                className=" w-full border-4 border-indigo-500/100  flex-shrink-0 "
+                                className=" w-full flex flex-shrink-0 "
 
                             >
-
-
                                 <img
                                     src={movie.image}
                                     alt={movie.title}
-                                    className="w-full max-h-64"
+                                    className="w-1/3 h-full bg-cover bg-center"
                                 />
-
-
 
                             </div>
                         ))}
                     </div>
-
-
                 </div>
-
-
-                <h3> {movies[currentIndex].description}</h3>
-
-            </div> */}
-            <div className="container">
-                <h1 className="heading">Flower Gallery</h1>
-                <Swiper
-                    effect={'coverflow'}
-                    grabCursor={true}
-                    centeredSlides={true}
-                    loop={true}
-                    slidesPerView={'auto'}
-                    coverflowEffect={{
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 2.5,
-                    }}
-                    pagination={{ el: '.swiper-pagination', clickable: true }}
-                    navigation={{
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                        clickable: true,
-                    }}
-                    modules={[EffectCoverflow, Pagination, Navigation]}
-                    className="swiper_container"
-                >
-                    {movies.map((movie, index) => (
-                        <SwiperSlide>
-                            <img src={movie.image} alt={movie.title} />
-                        </SwiperSlide>
-                    ))}
-
-                    {/* <div className="slider-controler">
-                        <div className="swiper-button-prev slider-arrow">
-                            <ion-icon name="arrow-back-outline"></ion-icon>
-                        </div>
-                        <div className="swiper-button-next slider-arrow">
-                            <ion-icon name="arrow-forward-outline"></ion-icon>
-                        </div>
-                        <div className="swiper-pagination"></div>
-                    </div> */}
-                </Swiper>
+                <div>
+                    <h3> {movies[currentIndex].description}</h3>
+                </div>
             </div>
         </>
     );
